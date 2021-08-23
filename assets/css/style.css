@@ -1,0 +1,162 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap'); */
+/* Works same way as the import in line 1 above but I prefer to use the one on line 3 cos the instructor used that in his video.
+The pipe separator (|) is used here to tack on additional fonts e.g name of the font 'Exo' followed by ':', then the weights */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
+
+/*----------------------------------------------Colours */
+
+.bg-color-name-title {
+    background-color: #676767;
+}
+
+.ui-menu-color-home {
+    background-color: #e67e22;
+}
+
+.ui-menu-color-resume {
+    background-color: #9b59b6;
+}
+
+.ui-menu-color-contact {
+    background-color: #3498db;
+}
+
+.ui-menu-color-download {
+    background-color: #525252;
+}
+
+/*----------------------------------------------Special paddings/margins/text */
+
+h1,
+h2, 
+h3, 
+h4 {
+    margin: 0;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.general-sub {
+    font-family: "Exo", sans-serif;
+    font-weight: 300;
+    color:#fafafa;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+/*----------------------------------------------Heading */
+
+header {
+    margin: 0;
+}
+
+.heading {
+    margin-left: 50px;
+}
+
+.logo {
+    background: url("../images/rosie.jpg");  /* We use '..' to come up out of the css directory, then go into the 'images' dir & we'll find 'rosie.jpg' file */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* This ensures that the image covers the container it's sitting in */
+    min-height: 360px;
+    transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out; /* Add vendor prefix to ensure it works across all browsers */
+    -webkit-transition: all .5s ease-in-out; /* Add vendor prefix to ensure it works across all browsers */
+}
+
+.name {
+    font-family: "Exo", sans-serif;
+    font-weight: 100;
+    font-size: 46px;
+    margin-top: 50px;
+    color: #fff;
+}
+
+.title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 90px;
+    color: #fff;
+}
+
+.list-inline-item:not(:last-child) {
+    margin: 0;
+}
+
+/* When we display items inline, the white space in our HTML file becommes visible as a 
+single space between our items so to eliminate this, we use a css hack by adding a menucontainer
+class to our <ul> & target this in our css by giving it a font-size of 0. This will close up the
+gaps between our list items (li) */
+.menucontainer {
+    /* Setting our font-size to 0 means that all our items will have a font-size of 0 so we will
+    no longer see them so we need to override this font-size and is done in the code block after
+    this code block (i.e #nav li) */
+    font-size: 0;  
+}
+
+/* This removes the margin at the bottom of our unordered list & makes our navigation items line 
+   up properly with the bottom of the image */
+#nav {
+    margin: 0;
+}
+
+#nav li {
+    font-size: 14px;
+    padding: 0;
+}
+
+.menuitem {
+    height: 120px;
+    text-align: center;
+    padding: 0;
+}
+
+.menuitem a {
+    width: 100%;   /* This will make the entire area of this div clickable */
+    text-decoration: none;
+    color: #fff;
+    height: 120px;
+}
+
+.menuitem a i {
+    padding-top: 22px;  /* This will push the icons down a bit from the top of the <div> */
+    /* We used the css rule of 'display: block' to make each fontawesome icon appear on a 
+       line of its own since 'i' element is inline by default. */
+    display: block; 
+    color: #fafafa;
+    font-size: 26px; 
+}
+
+.menuitem span {
+    display: block; 
+    width: 100%;  /* This will make it go the full width of its parent <div> */
+    padding-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+/*----------------------------------------------Hover.css */
+
+.hvr-sweep-to-bottom:before {
+    background: rgba(0, 0, 0, 0.2);
+    height: 120px;
+}
+
+/*----------------------------------------------footer */
+
+footer {
+    background-color: #525252;
+    color: #fafafa;
+    min-height: 120px; /* This means that the 'about us', 'download' & 'social' texts can grow beyond 120px but not below it */
+    margin: 0;
+}
