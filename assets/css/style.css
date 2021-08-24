@@ -9,6 +9,10 @@ The pipe separator (|) is used here to tack on additional fonts e.g name of the 
     background-color: #676767;
 }
 
+.bg-color-three-reasons {
+    background-color: #fff;
+}
+
 .ui-menu-color-home {
     background-color: #e67e22;
 }
@@ -46,6 +50,25 @@ h4 {
 
 .inline-block {
     display: inline-block;
+}
+
+/* We'll set our display to 'table' so we can specify its child columns i.e 'section-column' 
+    as 'table cells' to ensure that the columns will remain equal height regardless of their content. */
+.row-table {
+    display: table;
+}
+
+.section-column {
+    display: table-cell;
+    padding: 0 30px 30px;
+    float: none;
+}
+
+.section-heading {
+    font-family: "Exo", sans-serif;
+    font-weight: 300;
+    margin-top: 25px;
+    margin-bottom: 40px;
 }
 
 /*----------------------------------------------Heading */
@@ -159,4 +182,47 @@ footer {
     color: #fafafa;
     min-height: 120px; /* This means that the 'about us', 'download' & 'social' texts can grow beyond 120px but not below it */
     margin: 0;
+}
+
+.cv-pdf i {
+    font-size: 18px;  /* By convention, it should be smaller than the font-size used in the menu item */
+    color: #fafafa;
+    text-align: center;
+    padding-left: 5px;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.cv-pdf i:hover {
+    color: #e84610;
+}
+
+.social-links {
+    padding-bottom: 15px;
+}
+
+.social-links li a i {
+    width: 32px; /* Setting the width & height to equal size (height & width) will make our icons square */
+    height: 32px;
+    padding: 12px 0;
+    border-radius: 50%; /* Setting border-radius to 50% when an icon/image has equal size will give a circle  */
+    font-size: 13px;
+    line-height: 7px;
+    text-align: center;
+    color: #fafafa;
+    background: #8f8f8f;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.social-links li a i:hover {
+    background: #e84610;
+}
+
+#footer-details {
+    padding: 20px;
 }
