@@ -13,6 +13,14 @@ The pipe separator (|) is used here to tack on additional fonts e.g name of the 
     background-color: #fff;
 }
 
+.bg-color-personal-info {
+    background-color: #f4f4f4;
+} 
+
+.bg-color-work-history {
+    background-color: #9b59b6;
+}
+
 .ui-menu-color-home {
     background-color: #e67e22;
 }
@@ -64,6 +72,7 @@ h4 {
     float: none;
 }
 
+.history-heading,
 .section-heading {
     font-family: "Exo", sans-serif;
     font-weight: 300;
@@ -225,4 +234,130 @@ footer {
 
 #footer-details {
     padding: 20px;
+}
+
+/*----------------------------------------------Three Reasons */
+
+.three-reasons-icon {
+    font-size: 26px;
+    color: #e67e22;
+}
+
+.three-reasons-heading {
+    margin-bottom: 15px;
+}
+
+/*----------------------------------------------Personal Info */
+
+.personal-info-item {
+    margin-bottom: 20px;
+    display: block;
+    clear: both;  /* This will ensure no other item can appear at either side of it */
+}
+
+/* A <div> is a block level elememt by default so it starts & ends with a new line
+    & occupies the maximum horizontal space available */
+.personal-info-item .key,
+.personal-info-item .value {
+    padding-right: 8px;
+    display: inline-block;  /* An inline-block allows us to put 2 divs side-by-side */
+}
+
+.personal-info-item .key p,
+.personal-info-item .value p {
+    margin: 0;
+}
+
+.personal-info-item .key {
+    width: 30%;
+    margin-right: 21px;
+    padding-top: 2px;
+    vertical-align: top; /* This rule will make the key hug the top of the <div> as much as possible */
+}
+
+.personal-info-item .key p {
+    font-weight: 700;
+}
+
+.personal-info-item .value {
+    position: relative;
+    width: 60%;
+}
+
+/*----------------------------------------------Skills */
+
+/* Here, we'll override the 'progress' class i.e the 'wrapper class provided by Bootstrap */
+.progress {
+    position: relative;
+    height: 25px; /* Changing the height of a progress wrapper automatically changes the height of the bar inside */
+    margin-bottom: 4px;
+}
+
+.progress-type {
+/* We want the text label 'HTML/HTML5' to sit on top of the progress bar instead of the right & also to be positioned 
+to the far left so to achieve these, we set the position to absolute i.e absolute child of a relative parent */
+    position: absolute;
+    left: 0px;  /* Setting the 'left' position to 0px will move the text label to the far left of the progress bar */
+    font-weight: 400;
+    padding: 3px 30px 2px 10px;
+    color: #fafafa;
+    background-color: rgba(25, 25, 25, 0.2);
+}
+
+.progress-section {
+    margin: 40px 20px;
+}
+
+/*----------------------------------------------Work History */   
+
+.history-heading {
+    color: #fafafa;
+    margin-bottom: 50px;
+}
+
+ /* This is the parent timeline-item style */
+.timeline-item {   
+    padding: 4em 2em 0em 2em;
+    position: relative;  /* We used 'relative' here bcos we'll have some 'absolute' children that we want to style inside this timeline-item. */ 
+    color: #fafafa;
+    border-left: 1px solid;  /* This provides our vertical timeline effect */ 
+}
+
+.timeline-item p {
+    padding: 0;
+    margin: 0;
+}
+
+/* We'll use 'before' pseudo element to target the 'data-dates' attribute using the 'content' property.
+   We can only use 'content' with 'before or after' pseudo elements. This will set the content that will appear 
+   either before or after the class in question. Here, we will set the content to use the attr() function with the data-dates
+   in it so the content will be our dates. */
+.timeline-item:before { /* the 'before' pseudo element provides our dates */
+    content: attr(data-dates);
+    position: absolute; /* This is set to 'absolute' so we can give it a left & top positions to bring it above our employers text.*/
+    left: 2.5em;
+    top: 3em;
+    display: block;
+    font-family: "Exo", sans-serif;
+    font-weight: 500;
+    font-size: 0.8em;
+    padding: 0;
+    margin: 0;
+}
+
+/* The 'after' pseudo element will create a little disk, like a node or circle on the timeline to represent Christie's work history */
+.timeline-item:after { /* the 'after' pseudo element provides our little circular nodes */
+    width: 12px;  /* Setting width & height to be equal makes the element have a shape of square */
+    height: 12px;
+    border-radius: 12px; /* This will turn the square to circle. We can either set the border radius to same size of width & height or use 50% */
+    display: block;
+    top: 2.4em;
+    position: absolute; /* Since we want the circle to be inside our relative parent i.e 'timeline-item' */
+    left: -6px; /* This will drag it out to the left slightly & make it sit centrally on our timeline border */
+    content: '';    /* We set this to an empty string so that nothing else can appear in there */
+    background: #fafafa;
+}
+
+.history-items {
+    margin-bottom: 30px;
 }
