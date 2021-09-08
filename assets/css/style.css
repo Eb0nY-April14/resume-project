@@ -17,12 +17,25 @@ The pipe separator (|) is used here to tack on additional fonts e.g name of the 
     background-color: #f4f4f4;
 } 
 
+.bg-color-skills {
+    background-color: #ffffff;
+}
+
+
 .bg-color-work-history {
     background-color: #9b59b6;
 }
 
 .bg-color-contact {
     background-color: #fff;
+}
+
+.bg-color-conferences {
+    background-color: #f4f4f4;
+}
+
+.bg-color-groups {
+    background-color: #ffffff;
 }
 
 .ui-menu-color-home {
@@ -39,6 +52,21 @@ The pipe separator (|) is used here to tack on additional fonts e.g name of the 
 
 .ui-menu-color-download {
     background-color: #525252;
+}
+
+.ui-menu-color-github {
+    background-color: #1c4a6c;
+}
+
+.ui-menu-color-interests {
+    background-color: #e74c3c;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    background-color: #525252;
+    color: #555555;
 }
 
 /*----------------------------------------------Special paddings/margins/text */
@@ -70,11 +98,11 @@ h4 {
     display: table;
 }
 
-.section-column {
+/* .section-column {
     display: table-cell;
     padding: 0 30px 30px;
     float: none;
-}
+} */
 
 .history-heading,
 .section-heading {
@@ -83,6 +111,7 @@ h4 {
     margin-top: 25px;
     margin-bottom: 40px;
 }
+
 
 /*----------------------------------------------Heading */
 
@@ -122,20 +151,20 @@ header {
     color: #fff;
 }
 
-.list-inline-item:not(:last-child) {
+/* .list-inline-item:not(:last-child) {
     margin: 0;
-}
+}  */
 
 /* When we display items inline, the white space in our HTML file becommes visible as a 
 single space between our items so to eliminate this, we use a css hack by adding a menucontainer
 class to our <ul> & target this in our css by giving it a font-size of 0. This will close up the
 gaps between our list items (li) */
-.menucontainer {
+ .menucontainer {
     /* Setting our font-size to 0 means that all our items will have a font-size of 0 so we will
     no longer see them so we need to override this font-size and is done in the code block after
     this code block (i.e #nav li) */
-    font-size: 0;  
-}
+        font-size: 0;  
+ } 
 
 /* This removes the margin at the bottom of our unordered list & makes our navigation items line 
    up properly with the bottom of the image */
@@ -181,12 +210,18 @@ gaps between our list items (li) */
     letter-spacing: 2px;
 }
 
+.list-inline-item:not(:last-child) {
+     margin-right: 0rem; 
+}
+
+
 /*----------------------------------------------Hover.css */
 
 .hvr-sweep-to-bottom:before {
     background: rgba(0, 0, 0, 0.2);
     height: 120px;
 }
+
 
 /*----------------------------------------------footer */
 
@@ -197,19 +232,23 @@ footer {
     margin: 0;
 }
 
-.cv-pdf i {
+footer .cv-pdf i {
     font-size: 18px;  /* By convention, it should be smaller than the font-size used in the menu item */
     color: #fafafa;
     text-align: center;
     padding-left: 5px;
-    transition: all 0.35s ease-in-out;
+    /*transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
-    -o-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out; */
 }
 
 .cv-pdf i:hover {
     color: #e84610;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
 }
 
 .social-links {
@@ -237,7 +276,7 @@ footer {
 }
 
 #footer-details {
-    padding: 20px;
+    margin: 20px;
 }
 
 /*----------------------------------------------Three Reasons */
@@ -264,7 +303,7 @@ footer {
 .personal-info-item .key,
 .personal-info-item .value {
     padding-right: 8px;
-    display: inline-block;  /* An inline-block allows us to put 2 divs side-by-side */
+    /* display: inline-block;   An inline-block allows us to put 2 divs side-by-side */
 }
 
 .personal-info-item .key p,
@@ -294,7 +333,7 @@ footer {
 .progress {
     position: relative;
     height: 25px; /* Changing the height of a progress wrapper automatically changes the height of the bar inside */
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */
 }
 
 .progress-type {
@@ -314,10 +353,10 @@ to the far left so to achieve these, we set the position to absolute i.e absolut
 
 /*----------------------------------------------Work History */   
 
-.history-heading {
+/* .history-heading {
     color: #fafafa;
     margin-bottom: 50px;
-}
+} */
 
  /* This is the parent timeline-item style */
 .timeline-item {   
@@ -362,11 +401,16 @@ to the far left so to achieve these, we set the position to absolute i.e absolut
     background: #fafafa;
 }
 
+.history-heading {
+    color: #fafafa;
+    margin-bottom: 50px;
+}
+
 .history-items {
     margin-bottom: 30px;
 }
 
-/*----------------------------------------------Contact Form */ 
+/*----------------------------------------------Contact */ 
 
 .contact-heading {
     font-family: "Exo", sans-serif;
@@ -388,10 +432,22 @@ button[type="submit"] {  /* Here we target a button element with a particular at
     background-color: #e84610;
 }
 
+/*--------------------------------------------Map*/
+
+div#map {
+    min-height: 360px;
+}
+
 /*----------------------------------------------Media Queries */ 
 /*  This media query will take effect when the width of the screen is 992px or greater i.e on a desktop*/
 
 @media(min-width: 992px) {
+    .section-column {
+        padding: 0 30px 30px;
+        float: none;
+        display: table-cell;
+    }
+
     .center-form {
         padding-top: 30px;
         min-height: 240px;
