@@ -1,4 +1,4 @@
-function userInformationHTML() {
+function userInformationHTML(user) {
     /* The code on line 10 will return the user's public display name. The "(@" before the <a> tag 
     on line 12 will appear before the user's login name. Also we have a link 'i.e href' on line 12 too 
     which is the link to the user's public profile on GitHub. The _blank target will make it open in 
@@ -9,10 +9,13 @@ function userInformationHTML() {
     tag which will display the user's avatar. The image src is "${user.avatar_url}" & we'll give it 
     a width & height of 80px so it appears in a nice square. For the alt attribue, the user login name
     will be displayed if the avatar can't be retrieved. */
+    /* On line 26, ${user.followers} will give a count of the number of people following our user. 
+    ${user.following} will give a count of the number of people our user is following while 
+    ${user.public_repos} will give us a count of the public repositories that this user has.  */
     return `    
         <h2>${user.name} 
             <span class="small-name">
-                (@<a href="${user.html_url}" target="_blank">${user.login}</a> 
+                (@<a href="${user.html_url}" target="_blank">${user.login}</a>) 
             </span>
         </h2>
         <div class="gh-content">  
@@ -21,7 +24,8 @@ function userInformationHTML() {
                     <img src="${user.avatar_url}" width="80" height="80" alt="${user.login}" />
                 </a>
             </div>
-        </div>`
+            <p>Followers: ${user.followers} - Following ${user.following} <br> Repos: ${user.public_repos}</p>
+        </div>`;
 }
 
 
