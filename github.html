@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" type
+        ="text/css" />  <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+        type="text/css" />  <!-- Font Awesome Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type
+        ="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/github-information.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- jQuery Script -->
+    <script type="text/javascript" src="assets/js/github-information.js"></script> <!-- We'll create this JS file later & add content into it. -->
+
     <title>Christiana</title>
 </head>
 
@@ -63,9 +67,13 @@
                 <h5 class="uppercase text-center">You can also search on other user profiles</h5>
 
                 <div class="center-form">
+                    <!-- The fetchGitHubInformation() function will be fired/triggered/called every 
+                        single time a user enters/inputs something into the textbox. -->
+                    <!-- The "gh-username" id & "octocat" value are GitHub's mascot. It's their own  public 
+                    facing user on GitHub. -->
                     <input type="text" id="gh-username" value="octocat" oninput="fetchGitHubInformation()" />
-                    <div id="gh-user-data"></div>
-                    <div id="gh-repo-data"></div>
+                    <div id="gh-user-data"></div> <!-- This will present the user information. -->
+                    <div id="gh-repo-data"></div> <!-- This will present the repositiry information. -->
 
                 </div>
 
