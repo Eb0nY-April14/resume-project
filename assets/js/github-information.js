@@ -28,7 +28,41 @@ function userInformationHTML(user) {
         </div>`;
 }
 
+/* This function will display on the screen the repository data of our selected user that was returned earlier by JSON. 
+The function takes 1 argument which is repos i.e the object returned from our GitHub API. */
+function repoInformationHTML(repos) { // The 'repos' object is returned by GitHub as an array
+    if (repos.length == 0) { // so we can use an array method of .length() on it (i.e 'repos' object) to see if it's equal to 0. 
+        return `<div class="clearfix repo-list">No repos!</div>`; // if it's equal to 0, then it means that our array is empty & therefore no repositories for that user.
+    }
 
+    /* The code below will be carried out if (repos.length != 0 i.e our array is NOT empty so data is returned.
+        Since data is returned & it's in form of an array, we'll iterate through it & get that information out.
+        We'll create a variable called 'listItemsHTML' that will take the results of the map method that'll be 
+        run against our repos array. The map() method works like a 'forEach()' but it returns an array with the 
+        results of this function.  */
+    var listItemsHTML = repos.map(function(repo) {
+        /* Here, the contents of the array that we want to return are <li> i.e list items as seen below. The 
+        href within the <a> tag of <li> tag takes us to the actual repository when clicked on & it opens in 
+        new tab. The text that will be inside our <a> tag that will be displayed to the user is going to be 
+        ${repo.name} i.e the name of the repository. */
+        return `<li>    
+                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                </li>`;
+    });
+
+    /* We'll format the output here by creating a div & give it classes. Then, we'll create a <ul> that'll be 
+    the parent for all the list items we created. Since the map() returns an array, we'll use the join() method 
+    on that array & join everything with a new line i.e "\n". This stops us from iterating through the new array 
+    once again. */
+    return `<div class="clearfix repo-list">
+                <p>
+                    <strong>Repo List:</strong>
+                </p>
+                <ul>
+                    ${listItemsHTML.join("\n")}
+                </ul>
+            </div>`;
+} 
 
 function fetchGitHubInformation(event) {
     /* On line 4, the 'username' variable created below holds the username typed in by the user. We use jQuery 
@@ -53,19 +87,25 @@ function fetchGitHubInformation(event) {
         When we've got a response from the GitHub API, then run a function that takes the JSON response as its 
         parameter, store it in a variable called 'userData' & display it in the div with an ID of 'gh-user-data' 
         on the html page for the user. */ 
-
+        /* When doing 2 getJSON calls instead of 1, we need to have 2 responses come back in our first function 
+        which we'll name firstResponse & secondResponse. Also, we need to create a 2nd variable called repoData. 
+        When we do 2 calls at once, the when() method packs a response up into arrays & each one is the 1st 
+        element of the array so we have to put the indexes in there for these responses. */
         $.when( // when we've got a response from the GitHub API
-            $.getJSON(`https://api.github.com/users/${username}`)
+            $.getJSON(`https://api.github.com/users/${username}`),
+            $.getJSON(`https://api.github.com/users/${username}/repos`) /* This will list the repositories for that individual user */
         ).then( // then run a function that takes the JSON response as its parameter
-            function(response) {
-                var userData = response;  // store the response in a variable called 'userData'
+            function(firstResponse, secondResponse) {
+                var userData = firstResponse[0];  // store the first response in a variable called 'userData'
+                var repoData = secondResponse[0];  // store the second response in a variable called 'repoData'
                 $("#gh-user-data").html(userInformationHTML(userData)); // call the userInformationHTML() function that takes the userData as its parameter & display it in the div with an ID of 'gh-user-data'
+                $("#gh-repo-data").html(repoInformationHTML(repoData)); // call the repoInformationHTML() function that takes the repoData as its parameter & display it in the div with an ID of 'gh-repo-data'
                 /* Sometimes, in real life, promises don't work as expected & so it is in JS too. To handle this in JS, we 
                 need to pass in an error() function that will handle the error response. This function takes 'errorResponse'
                 as its parameter this  */
             }, function(errorResponse) {
                 /* What line 36 does is that it checks if no response is found i.e error status is 404 meaning 'not found' error */
-                if (errorResponse.status === 404) { 
+                if (errorResponse.status === 404) { // if starts
                     /* In response to the outcome of line 36, line 39 then selects the div with an ID of 'gh-user-data' & set its 
                     html to an error message that says user wasn't found using template literals. */
                     $("#gh-user-data").html(`<h2>No info found for user ${username}</h2>`); 
@@ -74,7 +114,7 @@ function fetchGitHubInformation(event) {
                     $("#gh-user-data").html( // We'll also set the HTML of the div with an ID of 'gh-user-data' to the JSON response that we got back from our error response variable using template literals
                         `<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
                     //)
-                }
+                } 
             }
         )
 }
