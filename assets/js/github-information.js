@@ -65,6 +65,14 @@ function repoInformationHTML(repos) { // The 'repos' object is returned by GitHu
 } 
 
 function fetchGitHubInformation(event) {
+    /* To get rid of the issue with our div with the ID of 'gh-repo-data'still displaying the repos 
+    (i.e not been cleared) when there's an empty textbox i.e no input in the textbox, we'll use jQuery 
+    to select the 2 IDs '#gh-user-data' & '#gh-repo-data' and set each of their html content to an empty 
+    string. This will empty/clear the divs */
+    $("#gh-user-data").html("");
+    $("#gh-repo-data").html("");
+
+
     /* On line 4, the 'username' variable created below holds the username typed in by the user. We use jQuery 
     to select the text field with 'gh-username' ID & access the value in that text field. */ 
     var username = $("#gh-username").val();
@@ -113,8 +121,11 @@ function fetchGitHubInformation(event) {
                     console.log(errorResponse); // logs the entire error out to the console 
                     $("#gh-user-data").html( // We'll also set the HTML of the div with an ID of 'gh-user-data' to the JSON response that we got back from our error response variable using template literals
                         `<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
-                    //)
                 } 
-            }
-        )
+            });
+       // )
 }
+
+/* To have the octocat profile displaying when the page is loaded instead of having just an empty div, we'll use the
+documentReady() function in jQuery & execute the fetchGitHubInformation() function when the DOM is fully loaded.  */
+$(document).ready(fetchGitHubInformation);
