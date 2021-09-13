@@ -117,7 +117,22 @@ function fetchGitHubInformation(event) {
                     /* In response to the outcome of line 36, line 39 then selects the div with an ID of 'gh-user-data' & set its 
                     html to an error message that says user wasn't found using template literals. */
                     $("#gh-user-data").html(`<h2>No info found for user ${username}</h2>`); 
-                } else {  // if the error generated is not 404 error, the else handles it on line 41 
+                    /* GitHub has a limit restriction in place as to how many requests you can make in a given time 
+                    period, this is called throttling & is designed to prevent users from making too many API requests 
+                    & putting GitHub servers under stress. We have no control over GitHub throttling but we can find a 
+                    way around it to make it present a nicer & friendlier error message to our users. What we'll do is
+                    after we check for status of 404, we put an 'else if' clause to check for status of 403 which means
+                    'forbidden', this is the status code that GitHub returns when our access is denied.   */
+                } else if (errorResponse.status === 403) {
+                    /* The 1st code after this comment section creates a 'resetTime' variable & set it to be a new date object. 
+                    The date we want to retrieve is stored in the errorResponse inside the headers & the particular header we 
+                    want to target is the 'X-RateLimit-Reset' header. GitHub provides this header to help us know when our quota
+                    will be reset so we can start using the API again. It is provided to us as a UNIX timestamp so we multiply it 
+                    by 1000 to get it into the format we can read. We then set the html of the div with an ID of "#gh-user-data"
+                    to display a clear & readable message to the user to tell them when they can use the service again. */
+                    var resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset')*1000);
+                    $("#gh-user-data").html(`<h4>Too many requests, please wait until ${resetTime.toLocaleTimeString()}</h4>`);     
+                } else {  // if the error generated is not 404 or 403 error, the else handles it on lines 135-137 
                     console.log(errorResponse); // logs the entire error out to the console 
                     $("#gh-user-data").html( // We'll also set the HTML of the div with an ID of 'gh-user-data' to the JSON response that we got back from our error response variable using template literals
                         `<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
