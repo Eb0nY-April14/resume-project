@@ -64,19 +64,20 @@
                 <h5 class="uppercase text-center">Let's work together!</h5>
 
                 <div class="center-form">
-                    <form>
+                    <!-- When this form is submitted, it triggers/calls the sendMail() function on the next line of this comment. -->
+                    <form>     <!-- onsubmit="return sendMail(this);"   The parameter 'this' refers to the form. -->
                         <!-- The 'form-control' class is required. It is a Bootstrap class that adds styling to this form. The
                              'name' attributes in a form is very important cos they are identifiers for the data when they are
                             being sent across the wire to an email server. -->
                         <input type="text" name="name" id="fullname" class="form-control" placeholder="Name" required />
-                        <input type="email" name="email" id="emailaddress" class="form-control" placeholder="Email" required />
+                        <input type="email" name="emailaddress" id="emailaddress" class="form-control" placeholder="Email" required />
                         <textarea rows="5" name="projectsummary" id="projectsummary" class="form-control" 
                             placeholder="Project description" required></textarea>
                         <!--<input type="submit" value="Submit"/>-->
                         <div class="form-row text-center">
                             <div class="col">
                                 <!-- We removed the default form button & replaced it with Bootstrap button class as below -->
-                                <button type="submit" class="btn btn-secondary">Send Project Request</button>
+                                <button onclick="sendMail()" type="submit" class="btn btn-secondary">Send Project Request</button>
                             </div>
                         </div>
                     </form>
@@ -147,7 +148,18 @@
                 </ul>
             </div>
         </div>
-
-    </footer>   
+    </footer>
+    <!-- This 1st script is responsible for loading the EmailJS SDK -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js">
+    </script>
+    <!-- This 2nd script is for initializing the EmailJS library with your user_id -->
+   <!--  <script type="text/javascript">
+        (function(){
+            emailjs.init("user_YH98pL3tdBRqHfHhncbX0"); // we copied this User ID from the installation page of emailjs doc to ensure that we have a valid emailJS account for sending emails.
+            //emailjs.send("gmail", "christiana", {}); // templateParams. userID is optional bcos we used emailjs.init that has the user id already.
+        })();
+    </script> -->
+    <script src="assets/js/sendEmail.js"></script>   
 </body>
 </html>
